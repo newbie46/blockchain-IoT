@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Interface</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Blockchain Interface</h1>
+        <div id="notifications"></div>
+        <div id="blockchain-info" class="mb-4">
+            <h2>Blockchain</h2>
+            <button id="view-chain" class="btn btn-primary mb-2">View Chain</button>
+            <pre id="chain-output" class="scrollable p-3 bg-light border rounded"></pre>
+        </div>
+        <div id="transaction-info" class="mb-4">
+            <h2>New Transaction</h2>
+            <form id="transaction-form" class="form-inline">
+                <input type="text" id="sender" class="form-control mb-2 mr-sm-2" placeholder="Sender" required>
+                <input type="text" id="recipient" class="form-control mb-2 mr-sm-2" placeholder="Recipient" required>
+                <input type="number" id="amount" class="form-control mb-2 mr-sm-2" placeholder="Amount" step="0.01" required>
+                <button type="submit" class="btn btn-success mb-2">Send Transaction</button>
+            </form>
+            <pre id="transaction-output" class="p-3 bg-light border rounded"></pre>
+        </div>
+        <div id="mining-info" class="mb-4">
+            <h2>Mining</h2>
+            <button id="mine-block" class="btn btn-warning mb-2">Mine Block</button>
+            <pre id="mining-output" class="scrollable p-3 bg-light border rounded"></pre>
+        </div>
+        <div id="nodes-info" class="mb-4">
+            <h2>Nodes</h2>
+            <form id="register-node-form" class="form-inline">
+                <input type="text" id="node-address" class="form-control mb-2 mr-sm-2" placeholder="Node Address" required>
+                <button type="submit" class="btn btn-info mb-2">Register Node</button>
+            </form>
+            <button id="resolve-nodes" class="btn btn-dark mb-2">Resolve Nodes</button>
+            <pre id="nodes-output" class="scrollable p-3 bg-light border rounded"></pre>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+body {
+    background-color: #f5f5f5;
+}
+
+h1 {
+    color: #333;
+}
+
+h2 {
+    color: #555;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.scrollable {
+    max-height: 300px; /* Adjust the height as needed */
+    overflow-y: auto;
+}
+
+#notifications {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1050; /* Bootstrap uses 1040 for modals */
+    pointer-events: none;
+    max-width: 300px; /* Set a max-width for the notifications */
+}
+
+#notifications .alert {
+    pointer-events: auto;
+    margin-bottom: 0.5rem; /* Small spacing between alerts */
+    padding: 0.5rem 1rem; /* Smaller padding for a compact look */
+    font-size: 0.875rem; /* Smaller font size */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Ensure proper layout */
+}
+
+/* Green button styling */
+button, .btn, .btn-primary, .btn-success, .btn-warning, .btn-info, .btn-dark {
+    background-color: #28a745 !important; /* Green color */
+    color: #fff !important;
+    border: none;
+}
+
+button:hover, .btn:hover, .btn-primary:hover, .btn-success:hover, .btn-warning:hover, .btn-info:hover, .btn-dark:hover {
+    background-color: #218838 !important; /* Darker green for hover */
+}
+
+button:disabled, .btn:disabled, .btn-primary:disabled, .btn-success:disabled, .btn-warning:disabled, .btn-info:disabled, .btn-dark:disabled {
+    background-color: #6c757d !important; /* Gray for disabled state */
+    cursor: not-allowed;
+}
