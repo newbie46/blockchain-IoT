@@ -1,11 +1,20 @@
 import hashlib
 import json
-from time import time
+import time
 from urllib.parse import urlparse
 from uuid import uuid4
-
 import requests
 from flask import Flask, jsonify, request
+import serial
+
+# Initialize the serial connection (adjust 'COM4' and '115200' to your needs)
+arduino = serial.Serial(port='COM4', baudrate=115200, timeout=.1)
+
+def send_command(command):
+    arduino.write(bytes(command, 'utf-8'))
+    time.sleep(0.05)
+    response = arduino.readline()
+    return response
 
 
 class Blockchain:
@@ -13,6 +22,9 @@ class Blockchain:
         self.current_transactions = []
         self.chain = []
         self.nodes = set()
+        
+        # Define familiar addresses
+        self.familiar_addresses = {'address1', 'address2'}  # Replace with actual addresses
 
         # Create the genesis block
         self.new_block(previous_hash='1', proof=100)
@@ -109,7 +121,7 @@ class Blockchain:
 
         block = {
             'index': len(self.chain) + 1,
-            'timestamp': time(),
+            'timestamp': time.time(),
             'transactions': self.current_transactions,
             'proof': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
@@ -135,6 +147,11 @@ class Blockchain:
             'recipient': recipient,
             'amount': amount,
         })
+
+        # Check if the transaction is between familiar addresses
+        if sender in self.familiar_addresses and recipient in self.familiar_addresses:
+            response = send_command('ON\n')  # Send command to Arduino
+            print(response)  # Print Arduino response
 
         return self.last_block['index'] + 1
 
@@ -199,7 +216,6 @@ node_identifier = str(uuid4()).replace('-', '')
 
 # Instantiate the Blockchain
 blockchain = Blockchain()
-
 
 @app.route('/mine', methods=['GET'])
 def mine():
